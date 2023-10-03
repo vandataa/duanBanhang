@@ -61,33 +61,35 @@
                     <!-- Menu Tool Box -->
                     <ul class="st-toolbox">
                         <li><span class="st-toolbox-btn st-search-open"><i class="fas fa-search"></i></span></li>
-                        <li><a class='st-toolbox-btn' href='shopping-cart.html'><i
-                                    class="fas fa-shopping-cart"></i><span class="badge badge-primary">2</span></a>
+                        <li><a class='st-toolbox-btn' href='{{route('shop_cart.shop_cart')}}'><i
+                                    class="fas fa-shopping-cart"></i><span class="badge badge-primary">{{count((array) session('cart'))}}</span></a>
                         </li>
                         <li>
                             @if (isset(Auth::user()->id))
-<a class='st-toolbox-btn' href='{{route('account.index')}}'>
+                                <a class='st-toolbox-btn' href='{{ route('account.index') }}'>
 
-    @if (Auth::user()->image != null)
-        <img src="{{asset('storage/images/'.Auth::user()->image)}}" style="border-radius:50%" alt="">
-    @else
-    <i class="fas fa-user"></i>
-    @endif
+                                    @if (Auth::user()->image != null)
+                                        <img src="{{ asset('storage/images/' . Auth::user()->image) }}"
+                                            style="border-radius:50%" alt="">
+                                    @else
+                                        <i class="fas fa-user"></i>
+                                    @endif
 
-
-
-</a>
-
+                                </a>
 
 
-<li><a class='st-toolbox-btn' href='{{ route('logout') }}'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-  </svg></a>
 
+                        <li><a class='st-toolbox-btn' href='{{ route('logout') }}'><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+                                    <path fill-rule="evenodd"
+                                        d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                                </svg></a>
                         @else
-                        <a class='st-toolbox-btn' href='{{ route('login') }}'><i class="fas fa-user"></i></a>
-                        @endif
+                            <a class='st-toolbox-btn' href='{{ route('login') }}'><i class="fas fa-user"></i></a>
+                            @endif
 
                         </li>
                     </ul>

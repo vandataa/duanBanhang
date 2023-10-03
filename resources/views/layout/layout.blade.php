@@ -14,15 +14,16 @@
     <!-- Site Title -->
     <title>Abid - Multipurpose business HTML template</title>
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('assets/img/favicon.png')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/slick.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/lightgallery.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
+    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lightgallery.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
 </head>
 
 <body>
@@ -33,42 +34,86 @@
     <!-- End Preloader -->
 
 
-@include('layout.header')
-@yield('content')
-@include('layout.footer')
+    @include('layout.header')
+    @yield('content')
+    @include('layout.footer')
 
-<!-- Start Video Popup -->
-<div class="st-video-popup">
-    <div class="st-video-popup-overlay"></div>
-    <div class="st-video-popup-content">
-      <div class="st-video-popup-layer"></div>
-      <div class="st-video-popup-container">
-        <div class="st-video-popup-align">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="about:blank"></iframe>
-          </div>
+    <!-- Start Video Popup -->
+    <div class="st-video-popup">
+        <div class="st-video-popup-overlay"></div>
+        <div class="st-video-popup-content">
+            <div class="st-video-popup-layer"></div>
+            <div class="st-video-popup-container">
+                <div class="st-video-popup-align">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="about:blank"></iframe>
+                    </div>
+                </div>
+                <div class="st-video-popup-close"></div>
+            </div>
         </div>
-        <div class="st-video-popup-close"></div>
-      </div>
     </div>
-  </div>
-  <!-- End Video Popup -->
+    <!-- End Video Popup -->
 
-  <!-- Scroll to top button -->
-  <a class="scrollToTop"><i class="fas fa-chevron-up"></i></a>
+    <!-- Scroll to top button -->
+    <a class="scrollToTop"><i class="fas fa-chevron-up"></i></a>
 
-  <!-- JS: Jquery -->
-  <script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
-  <script src="{{asset('assets/js/slick.min.js')}}"></script>
-  <script src="{{asset('assets/js/select2.min.js')}}"></script>
-  <script src="{{asset('assets/js/isotope.pkg.min.js')}}"></script>
-  <script src="{{asset('assets/js/lightgallery.min.js')}}"></script>
-  <script src="{{asset('assets/js/tamjid-counter.min.js')}}"></script>
-  <script src="{{asset('assets/js/wave-animation.js')}}"></script>
-  <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-  <script src="{{asset('assets/js/wow.min.js')}}"></script>
-  <script src="{{asset('assets/js/mains.js')}}"></script>
+    <!-- JS: Jquery -->
+    <script src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkg.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lightgallery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/tamjid-counter.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wave-animation.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mains.js') }}"></script>
+
+    <script type="text/javascript">
+        $(".cart_update").change(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ route('shop_cart.update_cart') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".cart_remove").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if (confirm("Do you really want to remove?")) {
+                $.ajax({
+                    url: '{{ route('remove_from_cart') }}',
+                    method: "DELETE",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: ele.parents("tr").attr("data-id")
+                    },
+                    success: function(response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="{{asset('assets/js/buttion.js')}}">
+    </script>
 </body>
 
 <!-- Mirrored from abid-html.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 10:23:58 GMT -->
+
 </html>

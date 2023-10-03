@@ -156,12 +156,12 @@
                                     <div class="st-product-in">
                                         <!-- Product Image -->
                                         <div class="st-product-thumb">
-                                            <a href='{{ route('shop.detail', $pro->id) }}'><img src="{{ asset('storage/images/' . $pro->thunm) }}" alt="Product"></a>
+                                            <a href='{{ route('shop.detail', $pro->id) }}'><img src="{{ asset('storage/images/' . $pro->thunm) }}" width="200px" height="400px" alt="Product"></a>
                                             <div class="st-product-tools">
                                                 <ul>
                                                     <li><a href='{{ route('shop.detail', $pro->id) }}' tabindex='0'><i
                                                                 class="fas fa-eye"></i></a></li>
-                                                    <li><a href='shopping-cart.html' tabindex='0'><i
+                                                    <li><a href='{{route('shop_cart.add_to_cart',$pro->id)}}' tabindex='0'><i
                                                                 class="fas fa-shopping-cart"></i></a></li>
                                                     <li><a href="#" tabindex="0"><i class="fas fa-heart"></i></a>
                                                     </li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdmimController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
@@ -47,6 +48,11 @@ Route::group(['middleware' => 'guest'], function () {
 
 });
 Route::group(['middleware' => 'auth'], function () {
+    Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
+    Route::patch('update-cart', [CartController::class, 'update'])->name('shop_cart.update_cart');
+    Route::get('/shop_cart', [CartController::class,'shopCart'])->name('shop_cart.shop_cart');
+    Route::get('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
+    Route::post('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
     route::resource('account', AccountController::class);
     Route::resource('/admin', AdmimController::class);
     Route::resource('/categories', CategoriesController::class);

@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('bills', function (Blueprint $table) {
+            $table->foreign('id_user')->references('id')->on('users');
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('bills', function (Blueprint $table) {
+            //
+        });
     }
 };

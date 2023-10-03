@@ -71,12 +71,15 @@
 
                                 <li class="align-items-center st-quantity-wrap">
                                     <b>Quantity:</b>
-                                    <div class="st-quantity">
-                                        <input type="text" value="01">
-                                        <button class="st-quantity-btn st-add" max=''></button>
-                                        <button class="st-quantity-btn st-minus"></button>
-                                    </div>
-                                    <a href="#" class="btn st-btn-custom st-accent">Add to cart</a>
+                                    {{-- <form action="{{ route('shop_cart.add_to_cart', $product->id) }}" method="get"> --}}
+                                        @csrf
+                                        <div class="st-quantity">
+                                            <input type="text" value="01">
+                                            <button class="st-quantity-btn st-add" max='{{ $product->inventory }}'></button>
+                                            <button class="st-quantity-btn st-minus"></button>
+                                        </div>
+                                        <button type="submit" class="btn st-btn-custom st-accent">Add to cart</button>
+                                    {{-- </form> --}}
                                 </li>
                             </ul>
                             <div class="st-height-b30 st-height-lg-b30"></div>
@@ -212,38 +215,44 @@
                 </div><!-- .st-tabs -->
                 <div class="st-height-b85 st-height-lg-b45"></div>
                 <h4 class="st-widget-title st-size-md wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                    <span>Related Product</span></h4>
+                    <span>Related Product</span>
+                </h4>
                 <div class="st-height-b10 st-height-lg-b10"></div>
                 <div class="row wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
                     @foreach ($sameproduct as $same)
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="st-product st-style1">
-                          <div class="st-product-in">
-                            <!-- Product Image -->
-                            <div class="st-product-thumb">
-                              <a href='{{ route('shop.detail',$same->id) }}'><img src="{{asset('storage/images/',)}}" alt="Product"></a>
-                              <div class="st-product-tools">
-                                <ul>
-                                  <li><a href="{{ route('shop.detail',$same->id) }}" tabindex="0"><i class="fas fa-eye"></i></a></li>
-                                  <li><a href="#" tabindex="0"><i class="fas fa-shopping-cart"></i></a></li>
-                                  <li><a href="#" tabindex="0"><i class="fas fa-heart"></i></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <!-- Product Name and Price -->
-                            <div class="st-product-details">
-                              <h4 class="st-product-title"><a href='{{ route('shop.detail',$same->id) }}'>{{$same->title }}</a></h4>
-                              <div class="st-product-label">
-                                <p class="st-product-price">$235</p>
-                                <div class="st-star" data-star="5">
-                                  <div class="st-star-in"></div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="st-product st-style1">
+                                <div class="st-product-in">
+                                    <!-- Product Image -->
+                                    <div class="st-product-thumb">
+                                        <a href='{{ route('shop.detail', $same->id) }}'><img
+                                                src="{{ asset('storage/images/') }}" alt="Product"></a>
+                                        <div class="st-product-tools">
+                                            <ul>
+                                                <li><a href="{{ route('shop.detail', $same->id) }}" tabindex="0"><i
+                                                            class="fas fa-eye"></i></a></li>
+                                                <li><a href="#" tabindex="0"><i
+                                                            class="fas fa-shopping-cart"></i></a></li>
+                                                <li><a href="#" tabindex="0"><i class="fas fa-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Product Name and Price -->
+                                    <div class="st-product-details">
+                                        <h4 class="st-product-title"><a
+                                                href='{{ route('shop.detail', $same->id) }}'>{{ $same->title }}</a></h4>
+                                        <div class="st-product-label">
+                                            <p class="st-product-price">$235</p>
+                                            <div class="st-star" data-star="5">
+                                                <div class="st-star-in"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                        </div>
-                        <div class="st-height-b0 st-height-lg-b30"></div>
-                      </div><!-- .col -->
+                            <div class="st-height-b0 st-height-lg-b30"></div>
+                        </div><!-- .col -->
                     @endforeach
                 </div>
             </div>
