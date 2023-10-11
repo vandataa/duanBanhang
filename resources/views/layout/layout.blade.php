@@ -110,7 +110,7 @@
             }
         });
     </script>
-    <script src="{{asset('assets/js/buttion.js')}}">
+    <script src="{{asset('assets/js/edit.js')}}">
     </script>
 </body>
 

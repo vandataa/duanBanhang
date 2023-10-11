@@ -1,7 +1,7 @@
 @extends('adminlayout.layout')
 
 @section('content')
-    
+
 
     <!-- main content start -->
     <div class="main-content">
@@ -114,38 +114,31 @@
                                     <td>153,100</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-behance"><i class="fa-brands fa-behance"></i></span> Behance
-                                    </td>
+                                    <td><span class="text-behance"><i class="fa-brands fa-behance"></i></span> Behance</td>
                                     <td>234,200</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-comb"><i class="fa-brands fa-y-combinator"></i></span>
-                                        Combinator</td>
+                                    <td><span class="text-comb"><i class="fa-brands fa-y-combinator"></i></span> Combinator</td>
                                     <td>326,012</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-insta"><i class="fa-brands fa-instagram"></i></span> Instagram
-                                    </td>
+                                    <td><span class="text-insta"><i class="fa-brands fa-instagram"></i></span> Instagram</td>
                                     <td>124,420</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-dribble"><i class="fa-brands fa-dribbble"></i></span> Dribble
-                                    </td>
+                                    <td><span class="text-dribble"><i class="fa-brands fa-dribbble"></i></span> Dribble</td>
                                     <td>554,220</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
-                                        Pinterest</td>
+                                    <td><span class="text-pinterest"><i class="fa-brands fa-pinterest-p"></i></span> Pinterest</td>
                                     <td>134,800</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
-                                        Linkedin</td>
+                                    <td><span class="text-linkedin"><i class="fa-brands fa-linkedin-in"></i></span> Linkedin</td>
                                     <td>254,812</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="text-twitter"><i class="fa-brands fa-twitter"></i></span> Twitter
-                                    </td>
+                                    <td><span class="text-twitter"><i class="fa-brands fa-twitter"></i></span> Twitter</td>
                                     <td>124,250</td>
                                 </tr>
                             </tbody>
@@ -157,8 +150,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <h5>New Customers</h5>
-                        <button class="btn btn-sm btn-icon btn-outline-primary"><i
-                                class="fa-regular fa-ellipsis-vertical"></i></button>
+                        <button class="btn btn-sm btn-icon btn-outline-primary"><i class="fa-regular fa-ellipsis-vertical"></i></button>
                     </div>
                     <div class="panel-body">
                         <table class="table table-borderless new-customer-table">
@@ -398,4 +390,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer start -->
+        <div class="footer">
+            <p>Copyright© <script>document.write(new Date().getFullYear())</script> All Rights Reserved By <span class="text-primary">Digiboard</span></p>
+        </div>
+        <!-- footer end -->
+    </div>
+    <!-- main content end -->
     @endsection

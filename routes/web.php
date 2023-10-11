@@ -51,8 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
     Route::patch('update-cart', [CartController::class, 'update'])->name('shop_cart.update_cart');
     Route::get('/shop_cart', [CartController::class,'shopCart'])->name('shop_cart.shop_cart');
+    Route::get('/check-out', [CartController::class,'checkOut'])->name('shop_cart.check-out');
+    Route::post('/bill_done', [CartController::class,'doneBill'])->name('shop_cart.donebill');
     Route::get('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
-    Route::post('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
+    Route::post('/add_cart/{id}', [CartController::class,'addCart'])->name('shop_cart.add_cart') ;
     route::resource('account', AccountController::class);
     Route::resource('/admin', AdmimController::class);
     Route::resource('/categories', CategoriesController::class);

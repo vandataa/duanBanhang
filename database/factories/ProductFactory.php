@@ -18,7 +18,6 @@ class ProductFactory extends Factory
     {
         return [
             'title'=>$this->faker->name,
-
             'description'=> $this->faker->text,
             'thunm'=> $this->faker->image,
             'galery'=>$this->faker->image,

@@ -71,15 +71,13 @@
 
                                 <li class="align-items-center st-quantity-wrap">
                                     <b>Quantity:</b>
-                                    {{-- <form action="{{ route('shop_cart.add_to_cart', $product->id) }}" method="get"> --}}
+                                    <form action="{{ route('shop_cart.add_cart', $product->id) }}" method="POST">
                                         @csrf
                                         <div class="st-quantity">
-                                            <input type="text" value="01">
-                                            <button class="st-quantity-btn st-add" max='{{ $product->inventory }}'></button>
-                                            <button class="st-quantity-btn st-minus"></button>
+                                            <input type="text" name="quantity" value="01">
                                         </div>
                                         <button type="submit" class="btn st-btn-custom st-accent">Add to cart</button>
-                                    {{-- </form> --}}
+                                    </form>
                                 </li>
                             </ul>
                             <div class="st-height-b30 st-height-lg-b30"></div>

@@ -70,7 +70,7 @@
 
                                     @if (Auth::user()->image != null)
                                         <img src="{{ asset('storage/images/' . Auth::user()->image) }}"
-                                            style="border-radius:50%" alt="">
+                                            style="width=10px; height=10px;border-radius:50% ; object-fit:contain"  alt="">
                                     @else
                                         <i class="fas fa-user"></i>
                                     @endif

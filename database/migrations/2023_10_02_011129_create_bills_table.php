@@ -15,8 +15,14 @@ return new class extends Migration
             $table->string('billcode');
             $table->bigInteger('id_user')->unsigned();
             $table->string('address');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->string('cart_bill');
             $table->string('total');
+            $table->string('paymain');
+            $table->datetimes('date');
+            $table->bigInteger('status')->unsigned();
             $table->timestamps();
         });
     }

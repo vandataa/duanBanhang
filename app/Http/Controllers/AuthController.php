@@ -51,8 +51,8 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-
-        return redirect()->route('login');
+        session()->remove('cart');
+        return redirect('/');
     }
     public function foget(Request $request)
     {
