@@ -59,10 +59,11 @@
                                     <tbody>
                                         @php
                                             $total = 0;
+                                            $total_product = 0;
                                         @endphp
                                         @foreach ((array) session('cart') as $id => $details)
                                             @php
-                                                $total += $details['price'] * $details['quantity']
+                                                $total += $details['price'] * $details['quantity'];
                                             @endphp
                                         @endforeach
                                         @if (session('cart'))
@@ -119,17 +120,19 @@
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="">
                                 @php
                                     $cart_name = '';
-                                    date_default_timezone_set("Asia/Ho_Chi_Minh");
+                                    date_default_timezone_set('Asia/Ho_Chi_Minh');
                                     $date = date('d/m/y-H:i:s');
                                 @endphp
                                 @foreach ((array) session('cart') as $id => $details)
                                     @php
-                                        $cart_name .= $details['product_name'] .',';
+                                        $cart_name .= $details['product_name'] .= ' x'. $details['quantity']. ','  ;
+                                        $total_product += $details['quantity'];
                                     @endphp
                                 @endforeach
-                                <input type="hidden" name="date" value="{{$date}}"  id="">
+                                <input type="hidden" name="date" value="{{ $date }}" id="">
                                 <input type="hidden" name="cart_bill" value="{{ $cart_name }}" id="">
                                 <input type="hidden" name="total" value="{{ $total }}" id="">
+                                <input type="hidden" name="product" value="{{ $total_product }}" id="">
                                 <div class="st-height-b20 st-height-lg-b20"></div>
                                 <button type="submit" class="btn st-btn-custom st-accent btn-md">Place Order</button>
                             </div>

@@ -171,7 +171,7 @@
                                         <!-- Product Name and Price -->
                                         <div class="st-product-details">
                                             <div class="st-product-label">
-                                                <p class="st-product-price">{{ $pro->price }}</p>
+                                                <p class="st-product-price">$ {{ $pro->price }}</p>
                                                 <div class="st-star" data-star="5">
                                                     <div class="st-star-in"></div>
                                                 </div>

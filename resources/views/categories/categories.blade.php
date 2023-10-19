@@ -166,10 +166,10 @@
                                                 <button><i class="fa-light fa-eye"></i></button>
                                                 <a href="{{ route('categories.edit', $cate->id) }}"><i
                                                         class="fa-light fa-pen-to-square"></i></a>
-                                                <form action="{{ route('categories.destroy', $cate->id) }}" method="post">
+                                                <form action="{{ route('categories.destroy', $cate->id) }}"
+                                                    method="post">
                                                     @csrf
                                                     @method('DELETE')
-
                                                     <button type="submit"><i class="fa-light fa-trash"></i></button>
                                                 </form>
                                             </div>

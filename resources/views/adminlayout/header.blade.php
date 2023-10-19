@@ -670,7 +670,7 @@
                                 <li class="sidebar-dropdown-item"><a href="{{route('products.create')}}" class="sidebar-link">Add Product</a></li>
                                 <li class="sidebar-dropdown-item"><a href="{{route('products.index')}}" class="sidebar-link">All Product</a></li>
                                 <li class="sidebar-dropdown-item"><a href="{{route('categories.index')}}" class="sidebar-link">Category</a></li>
-                                <li class="sidebar-dropdown-item"><a href="order.html" class="sidebar-link">Order</a></li>
+                                <li class="sidebar-dropdown-item"><a href="{{route('order.index')}}" class="sidebar-link">Order</a></li>
                             </ul>
                         </li>
                         <li class="sidebar-dropdown-item">

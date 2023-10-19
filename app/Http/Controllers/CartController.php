@@ -87,6 +87,7 @@ class CartController extends Controller
         $phone = $request->input('phone');
         $date = $request->input('date');
         $pay = $request->input('pay');
+        $total_pro = $request->input('product');
         $data = [
             'billcode' => $bill_code,
             'id_user' => $id_user,
@@ -95,11 +96,13 @@ class CartController extends Controller
             'email' => $email,
             'phone' => $phone,
             'cart_bill' => $cart_bill,
+            'product'=> $total_pro,
             'paymain' => $pay,
             'total' => $total,
             'date' => $date,
             'status' => 2,
         ];
+
         Bill::create($data);
         session()->remove('cart');
         return redirect()->route('account.index')->with('success', 'Your order successed');

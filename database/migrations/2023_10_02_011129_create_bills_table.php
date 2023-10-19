@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bills', function (Blueprint $table) {
+            $table->id();
             $table->string('billcode');
             $table->bigInteger('id_user')->unsigned();
             $table->string('address');
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('cart_bill');
+            $table->string('product');
             $table->string('total');
             $table->string('paymain');
             $table->datetimes('date');

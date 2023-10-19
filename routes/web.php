@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SendEmail;
@@ -56,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
     Route::post('/add_cart/{id}', [CartController::class,'addCart'])->name('shop_cart.add_cart') ;
     route::resource('account', AccountController::class);
+    route::get('/order',[ OrderController::class ,'index'])->name('order.index');
+    route::delete('/order/{id}',[ OrderController::class ,'destroy'])->name('order.destroy');
     Route::resource('/admin', AdmimController::class);
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/contact', ContactController::class);

@@ -16,6 +16,7 @@ class Bill extends Model
         'email',
         'phone',
         'cart_bill',
+        'product',
         'paymain',
         'date',
         'status',
