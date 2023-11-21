@@ -10,6 +10,7 @@
     <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
         <div class="main-content">
             <div class="dashboard-breadcrumb mb-25">
                 <h2>Add New Product</h2>
@@ -84,9 +85,10 @@
                                                 <div class="part-txt">
                                                     <h5>Add thumbnail <span>(jpeg/png)</span></h5>
                                                 </div>
-                                                <input type="file" class="image-input" name="thum" id="thumbUpload">
-                                                <img src="{{ asset('storage/images/' . $product->thunm) }}" width="300"
-                                                    height="200"alt="">
+                                                <input type="file" class="form-control" name="thumn"
+                                                    id="thumbUpload">
+                                                <img src="{{ asset('storage/images/' . $product->thunm) }}" width="300px"
+                                                    height="200px"alt="" style="object-fit: contain">
                                             </div>
                                         </div>
                                         <div class="col-xxl-9 col-md-8 col-7 col-xs-12">
@@ -94,11 +96,18 @@
                                                 <div class="part-txt">
                                                     <h5>Add gallery <span>(jpeg/png)</span></h5>
                                                 </div>
-                                                <input type="file" class="image-input" name="gallery"
-                                                    id="galleryUpload">
-                                                <br>
-                                                <img src="{{ asset('storage/images/' . $product->galery) }}" width="300"
-                                                    height="200" alt="">
+                                                <input type="file" name="image[]" class="form-control" multiple>
+                                                @php
+                                                    $first = substr($product->galery, 2);
+                                                    $end = substr($first, 0, -2);
+                                                    $images = explode('","', $end);
+
+                                                @endphp
+                                                @foreach ($images as $images)
+                                                    <img src="{{ asset('storage/images/' . $images) }}" width="180px"
+                                                        height="140px" style="object-fit: cover;border-radius: 20px ;margin-top: 10px;margin-left: 10px"
+                                                        alt="">
+                                                @endforeach
                                             </div>
                                         </div>
 
@@ -106,6 +115,19 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-inventory" role="tabpanel"
                                     aria-labelledby="nav-inventory-tab" tabindex="0">
+                                    <div class="row align-items-center g-3 mb-3">
+                                        <label class="col-md-2 col-form-label col-form-label-sm">SKU <span
+                                                class="btn-flush fs-14" data-bs-toggle="tooltip"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."><i
+                                                    class="fa-solid fa-circle-question"></i></span></label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control form-control-sm"
+                                                value="{{ $product->SKU }}" name="SKU" id="SKU">
+                                        </div>
+                                    </div>
+
+
                                     <div class="row align-items-center g-3 mb-3">
                                         <label class="col-md-2 col-form-label col-form-label-sm">Product Code <span
                                                 class="btn-flush fs-14" data-bs-toggle="tooltip"
@@ -119,7 +141,7 @@
                                     </div>
                                     <div class="row align-items-center g-3 mb-3">
                                         <label for="lowStockWarning"
-                                            class="col-md-2 col-form-label col-form-label-sm">Quantity</label>
+                                            class="col-md-2 col-form-label col-form-label-sm">Quantiry</label>
                                         <div class="col-md-10">
                                             <input type="number" name="inventory" value="{{ $product->inventory }}"
                                                 class="form-control form-control-sm" id="lowStockWarning">
@@ -130,30 +152,43 @@
                                     aria-labelledby="nav-price-tab" tabindex="0">
                                     <div class="row g-3 mb-3">
                                         <label for="regularPrice"
-                                            class="col-md-2 col-form-label col-form-label-sm">Regular Price (VND)</label>
+                                            class="col-md-2 col-form-label col-form-label-sm">Regular
+                                            Price ($)</label>
                                         <div class="col-md-10">
-                                            <input type="number" class="form-control form-control-sm"
-                                                value="{{ $product->price }}" name="price" id="regularPrice">
+                                            <input type="number" value="{{ $product->regularPrice }}"
+                                                name="regularPrice" class="form-control form-control-sm"
+                                                id="regularPrice">
                                         </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <label for="salePrice" class="col-md-2 col-form-label col-form-label-sm">Discount
+                                            ($)</label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control form-control-sm"
+                                                value="{{ $product->discount }}" name="discount" id="salePrice">
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-video" role="tabpanel"
                                     aria-labelledby="nav-video-tab" tabindex="0">
+
                                     <div class="row align-items-center g-3 mb-3">
                                         <label class="col-md-2 col-form-label col-form-label-sm">Video Provider</label>
                                         <div class="col-md-10">
                                             <select class="form-control form-control-sm"
                                                 data-placeholder="Select Provider">
-                                                <option value="Youtube">Youtube</option>
+                                                <option value="">Select Provider</option>
+                                                <option value="0">Youtube</option>
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row g-3">
                                         <label class="col-md-2 col-form-label col-form-label-sm">Video Link</label>
                                         <div class="col-md-10">
-                                            <input type="url" name="video" value="{{ $product->video }}"
-                                                class="form-control form-control-sm" name="video_link"
-                                                placeholder="Video Link">
+                                            <input type="url" class="form-control form-control-sm"
+                                                value="{{ $product->video }}" name="video" placeholder="Video Link">
                                             <span class="input-additional-txt">Use proper link without extra parameter.
                                                 Don't use short share link/embeded iframe code.</span>
                                         </div>
@@ -180,6 +215,7 @@
                                         class="fa-light fa-angle-up"></i></button>
                             </div>
                         </div>
+
                         <div class="panel-body">
                             <form class="input-group-with-icon mb-20">
                                 <span class="input-icon"><i class="fa-light fa-magnifying-glass"></i></span>
@@ -210,6 +246,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="old_cate" value="{{$product->categories}}"  id="">
     </form>
     <!-- footer start -->
     <div class="footer">

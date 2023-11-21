@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -13,7 +16,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view("user.account");
+
+        $order = DB::table("bills")->where('id_user', Auth::user()->id)->get();
+
+        return view("user.account", compact("order"));
     }
 
     /**
@@ -35,9 +41,10 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -60,9 +67,9 @@ class AccountController extends Controller
         if ($request->file('image') != null) {
             $image = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/images', $image);
-            if ($request->input('newp') != null){
+            if ($request->input('newp') != null) {
                 $newp = $request->input('newp');
-                User::where('id',$id )->
+                User::where('id', $id)->
                     update(
                         [
                             'name' => $name,
@@ -73,9 +80,8 @@ class AccountController extends Controller
                         ]
                     );
                 return redirect()->route('account.index');
-            }
-             else {
-                User::where('id',$id )->
+            } else {
+                User::where('id', $id)->
                     update(
                         [
                             'name' => $name,
@@ -89,31 +95,37 @@ class AccountController extends Controller
         } else {
             if ($request->input('newp') != null) {
                 $newp = $request->input('newp');
-                User::where('id',$id )->
-                update(
-                    [
-                        'name' => $name,
-                        'address' => $address,
-                        'phone' => $phone,
-                        'password' => $newp,
-                    ]
-                );
-            return redirect()->route('account.index');
+                User::where('id', $id)->
+                    update(
+                        [
+                            'name' => $name,
+                            'address' => $address,
+                            'phone' => $phone,
+                            'password' => $newp,
+                        ]
+                    );
+                return redirect()->route('account.index');
             } else {
-                User::where('id',$id )->
-                update(
-                    [
-                        'name' => $name,
-                        'address' => $address,
-                        'phone' => $phone,
-                    ]
-                );
+                User::where('id', $id)->
+                    update(
+                        [
+                            'name' => $name,
+                            'address' => $address,
+                            'phone' => $phone,
+                        ]
+                    );
                 return redirect()->route('account.index');
             }
 
         }
     }
-
+    public function detailBill(Request $request)
+    {
+        $id = $request->id;
+        $bill = Bill::find($id);
+        $order = DB::table("bills")->where('id_user', Auth::user()->id)->get();
+        return view('user.showdetail', ['bill' => $bill],compact("order"));
+    }
     /**
      * Remove the specified resource from storage.
      */

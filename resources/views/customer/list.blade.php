@@ -169,8 +169,6 @@
                                     <th>Date Registered</th>
                                     <th>Email</th>
                                     <th>Orders</th>
-                                    <th>Total Spend</th>
-                                    <th>AOV</th>
                                     <th>Country / Region</th>
                                     <th>City</th>
                                     <th>Region</th>
@@ -185,15 +183,26 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </td>
-                                        <td><a href="#">{{ $cus->name }}</a></td>
+                                        <td><a href="{{ route('customer.fix', $cus->id) }}">{{ $cus->name }}</a></td>
                                         <td>{{ $cus->nameRole }}</td>
-
                                         <td>{{ $cus->created_at }}</td>
                                         <td><a href="#">{{ $cus->email }}</a></td>
                                         <td>2</td>
-                                        <td>$74.00</td>
-                                        <td>$74.00</td>
-                                        <td>BD</td>
+                                        <td>
+                                            <form action="{{ route('customer.update', $cus->id) }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <select name="role" id="">
+                                                    <option>change role</option>
+                                                    <option value="1">user</option>
+                                                    <option value="2">Quản trị</option>
+                                                    <option value="3">Admin</option>
+                                                </select>
+                                                <input type="hidden" name="id" value="{{ $cus->id }}"
+                                                    id="">
+                                                <button type="submit">change</button>
+                                            </form>
+                                        </td>
                                         <td>Dhaka</td>
                                         <td>CA</td>
                                         <td>12563</td>

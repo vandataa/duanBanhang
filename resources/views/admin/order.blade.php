@@ -216,19 +216,19 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </td>
-                                        <td><a href="invoices.html">#{{ $order->billcode }}</a></td>
+                                        <td><a
+                                                href="{{ route('admin.invoices', $order->billcode) }}">#{{ $order->billcode }}</a>
+                                        </td>
                                         <td>{{ $order->name }}</td>
-
                                         <td>{{ $order->product }}</td>
                                         <td>${{ $order->total }}</td>
                                         <td>{{ $order->paymain }}</td>
                                         <td><span>{{ $order->nameStatus }}</span></td>
                                         <td>{{ $order->date }}</td>
                                         <td>
-                                            <div class="btn-box">
-                                                <button><i class="fa-light fa-eye"></i></button>
-                                                <a href=""><i class="fa-light fa-pen"></i></a>
-                                                <form action="{{ route('order.destroy', $order->idbill) }}" method="post">
+                                            <div class="btn-box" style="margin-right: 40px">
+                                                <form action="{{ route('order.destroy', $order->idbill) }}"
+                                                    method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"><i class="fa-light fa-trash"></i></button>

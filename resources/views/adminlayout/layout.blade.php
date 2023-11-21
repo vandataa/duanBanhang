@@ -10,6 +10,7 @@
 
     <link rel="shortcut icon" href="favicon.png')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/dropzone.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/css/sharp-solid.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/css/OverlayScrollbars.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/css/jquery.uploader.css')}}">
@@ -55,8 +56,10 @@
         if (rtlReady !== undefined) {
             localStorage.setItem('layoutDirection', 'ltr');
         }
+
     </script>
     <!-- for demo purpose -->
+
 </body>
 
 <!-- Mirrored from html.digiboard.codebasket.xyz/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 10:45:20 GMT -->

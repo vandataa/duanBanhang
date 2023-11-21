@@ -26,8 +26,10 @@
                                 <h4 class="st-widget-title"><span>Categories</span></h4>
                                 <ul class="st-catagory-list">
                                     @foreach ($category as $cate)
-                                        <li><a href="{{route('shop.shopsame',$cate->id)}}">{{ $cate->categoryName }} <span
-                                                    class="st-catagory-count">(10)</span></a></li>
+                                        <li><a href="{{ route('shop.shopsame', $cate->id) }}">{{ $cate->categoryName }} <span
+                                                    class="st-catagory-count">(
+                                                         {{$cate->count}}
+                                                    )</span></a></li>
                                     @endforeach
 
                                 </ul>
@@ -156,13 +158,16 @@
                                     <div class="st-product-in">
                                         <!-- Product Image -->
                                         <div class="st-product-thumb">
-                                            <a href='{{ route('shop.detail', $pro->id) }}'><img src="{{ asset('storage/images/' . $pro->thunm) }}" width="200px" height="400px" alt="Product"></a>
+                                            <a href='{{ route('shop.detail', $pro->id) }}'><img
+                                                    src="{{ asset('storage/images/' . $pro->thunm) }}"
+                                                    style="object-fit: cover ;width:253px; height:253px"
+                                                    alt="Product"></a>
                                             <div class="st-product-tools">
                                                 <ul>
                                                     <li><a href='{{ route('shop.detail', $pro->id) }}' tabindex='0'><i
                                                                 class="fas fa-eye"></i></a></li>
-                                                    <li><a href='{{route('shop_cart.add_to_cart',$pro->id)}}' tabindex='0'><i
-                                                                class="fas fa-shopping-cart"></i></a></li>
+                                                    <li><a href='{{ route('shop_cart.add_to_cart', $pro->id) }}'
+                                                            tabindex='0'><i class="fas fa-shopping-cart"></i></a></li>
                                                     <li><a href="#" tabindex="0"><i class="fas fa-heart"></i></a>
                                                     </li>
                                                 </ul>
@@ -171,7 +176,8 @@
                                         <!-- Product Name and Price -->
                                         <div class="st-product-details">
                                             <div class="st-product-label">
-                                                <p class="st-product-price">$ {{ $pro->price }}</p>
+                                                <p class="st-product-price st-offer">${{ $pro->discount }} <span
+                                                        class="st-previous-price">${{ $pro->regularPrice }}</span></p>
                                                 <div class="st-star" data-star="5">
                                                     <div class="st-star-in"></div>
                                                 </div>

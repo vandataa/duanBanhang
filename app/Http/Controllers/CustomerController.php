@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +15,11 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = DB::table("users")
-        ->join('roles', 'roles.id', '=', 'users.role')
-        ->select('users.*', 'roles.nameRole')
-        ->get();
-        return view("customer.list", compact("customers"));
+            ->join('roles', 'roles.id', '=', 'users.role')
+            ->select('users.*', 'roles.nameRole')
+            ->get();
+        $role = Role::all();
+        return view("customer.list", ['customers' => $customers, 'role' => $role]);
     }
 
     /**
@@ -28,36 +30,26 @@ class CustomerController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $id = $request->input('id');
+        $role = $request->input("role");
+        User::where('id', $id)->
+            update(
+                [
+                    'role' => $role
+                ]
+            );
+        return redirect()->back();
     }
 
     /**
@@ -66,5 +58,18 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function fix($id)  {
+        $user = User::find($id);
+        $role = Role::all();
+        return view('admin.fixcustomer', [ 'user'=> $user,'role'=> $role]);
+    }
+    public function updateUser(Request $request , $id) {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $address = $request->input('address');
+        $role = $request->input('role');
+        
     }
 }

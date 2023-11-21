@@ -40,13 +40,11 @@
                                     <tr data-id="{{ $id }}">
                                         <td>
 
-                                            <div class="st-table-img"><img src="{{asset('storage/images/'.$details['photo'])}}"
-                                                    alt="product1"></div>
+                                            <div class="st-table-img"><img
+                                                    src="{{ asset('storage/images/' . $details['photo']) }}" alt="product1">
+                                            </div>
                                         </td>
                                         <td data-th="Product">{{ $details['product_name'] }}
-
-
-
                                         <td data-th="Price">{{ $details['price'] }}</td>
                                         <td data-th="Quantity">
                                             <div class="st-quantity">
@@ -99,8 +97,9 @@
                         </table>
                         <div class="text-right">
 
-                                <a  href="{{route('shop_cart.check-out')}}" type="submit" class="btn st-btn-custom st-accent btn-md">Proceed to
-                                    Checkout</a >
+                            <a href="{{ route('shop_cart.check-out') }}" type="submit"
+                                class="btn st-btn-custom st-accent btn-md">Proceed to
+                                Checkout</a>
 
                         </div>
                     </div>

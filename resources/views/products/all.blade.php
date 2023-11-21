@@ -197,8 +197,8 @@
                                     <th>Product</th>
                                     <th>SKU</th>
                                     <th>Stock</th>
-                                    <th>Price</th>
-                                    <th>Published</th>
+                                    <th> Regular</th>
+                                    <th>Discount</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -223,8 +223,8 @@
                                     </td>
                                     <td>{{$product->productCode}}</td>
                                     <td>{{$product->inventory}}</td>
-                                    <td>{{$product->price}} VND</td>
-                                    <td>{{$product->created_at  }}</td>
+                                    <td>{{$product->regularPrice}} VND</td>
+                                    <td>{{$product->discount}} VND</td>
                                     <td>
                                         <div class="btn-box">
                                             <button><i class="fa-light fa-eye"></i></button>
@@ -232,7 +232,8 @@
                                             <form action="{{route('products.destroy',$product->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button onclick="confirm('bạn chắc chưa')"><i class="fa-light fa-trash"></i></button>
+                                                <input type="hidden" name="cate" value="{{$product->categories}}" id="">
+                                                <button type="submit"><i class="fa-light fa-trash"></i></button>
                                             </form>
                                         </div>
                                     </td>

@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('thunm');
-            $table->string('galery');
+            $table->text('galery');
             $table->string('productCode');
             $table->string('inventory');
-            $table->string('price');
+            $table->string('regularPrice');
+            $table->string('SKU');
+            $table->string('discount')->nullable();
             $table->string('video');
             $table->bigInteger('categories')->unsigned();
             $table->foreign('categories')->references('id')->on('categories');

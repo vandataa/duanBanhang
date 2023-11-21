@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('product');
             $table->string('total');
             $table->string('paymain');
-            $table->datetimes('date');
+            $table->dateTime('date');
             $table->bigInteger('status')->unsigned();
             $table->timestamps();
         });

@@ -11,7 +11,8 @@ class ShopController extends Controller
 {
     public function shop(){
         $category = Category::all();
-        $product = Product::all();
+        $product = DB::table("products")->select('*')->orderBy('id','desc')->get();
+        // $count = DB::table("products")->select('categories,COUNT(*) as count')->groupBy('categories')->get();
         return view("user.shop", compact("category","product"));
     }
     public function shopsame(Request $request){

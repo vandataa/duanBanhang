@@ -23,21 +23,47 @@
                     <div class="col-md-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
                         <div class="st-tabs st-fade-tabs st-style4">
                             <div class="tab-content st-lightgallery">
-                                <div id="product1" class="st-tab active">
-                                    <img src="{{ asset('storage/images/' . $product->thunm) }}" alt="">
-                                    <a href="{{ asset('storage/images/' . $product->thunm) }}"
-                                        class="st-product-preview-btn st-lightbox-item"><i class="far fa-eye"></i></a>
-                                    <span class="st-product-label">Sale</span>
-                                </div>
-                                <div id="product2" class="st-tab">
-                                    <img src="{{ asset('storage/images/' . $product->galery) }}" alt="">
-                                    <a href="{{ asset('storage/images/' . $product->galery) }}"
-                                        class="st-product-preview-btn st-lightbox-item"><i class="far fa-eye"></i></a>
-                                    <span class="st-product-label">Sale</span>
-                                </div>
+                                @php
+                                    $first = substr($product->galery, 2);
+                                    $end = substr($first, 0, -2);
+                                    $images = explode('","', $end);
 
+                                @endphp
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @foreach ($images as $images)
+                                    <div id="product{{ $i++ }}"
+                                        class="st-tab @php if ($i==1) {
+                                    echo 'active';
+                                } @endphp">
+                                        <img src="{{ asset('storage/images/' . $images) }}" style="width:400px; height:650px;object-fit: cover" alt="">
+                                        <a href="{{ asset('storage/images/' . $images) }}" 
+                                            class="st-product-preview-btn st-lightbox-item"><i class="far fa-eye"></i></a>
+                                        <span class="st-product-label">Sale</span>
+                                    </div>
+                                @endforeach
                             </div>
                             <ul class="st-tab-links st-style4 st-mp0">
+                                @php
+                                    $first = substr($product->galery, 2);
+                                    $end = substr($first, 0, -2);
+                                    $images = explode('","', $end);
+
+                                @endphp
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @foreach ($images as $images)
+                                    <li
+                                        class="st-tab-title  @php if ($i==1) {
+                                        echo 'active';
+                                    } @endphp ">
+                                        <a href="#product{{ $i++ }}" class="st-tab-link"><img
+                                                src="{{ asset('storage/images/' . $images) }}" style="width: 60px;height: 40px; object-fit: cover;" alt=""></a>
+                                    </li>
+                                @endforeach
+
 
                             </ul>
                         </div><!-- .st-tabs -->
@@ -48,8 +74,8 @@
                         <div class="st-product-info">
                             <!-- Product Details Title -->
                             <h2 class="st-product-details-title"><a href="#">{{ $product->title }}l</a></h2>
-                            <p class="st-product-price st-offer">{{ $product->price }} <span
-                                    class="st-previous-price">{{ $product->price }} </span></p>
+                            <p class="st-product-price st-offer">${{ $product->discount }} <span
+                                    class="st-previous-price">${{ $product->regularPrice }}</span></p>
                             <!-- Product Details Review -->
                             <ul class="st-mp0 st-product-info-list">
                                 <li>
@@ -62,13 +88,10 @@
                                     </div>
                                 </li>
                                 <li><b>Available:</b>{{ $product->inventory }} </li>
-                                <li><b>Product type:</b> Casual Shoe</li>
-                                <li><b>Brand:</b> Apparel</li>
                                 <li>
                                     <b>Product details</b>
                                     <p>{{ $product->description }} </p>
                                 </li>
-
                                 <li class="align-items-center st-quantity-wrap">
                                     <b>Quantity:</b>
                                     <form action="{{ route('shop_cart.add_cart', $product->id) }}" method="POST">
@@ -76,7 +99,8 @@
                                         <div class="st-quantity">
                                             <input type="text" name="quantity" value="01">
                                         </div>
-                                        <button type="submit" class="btn st-btn-custom st-accent">Add to cart</button>
+                                        <button type="submit" class="btn st-btn-custom st-accent">Add to
+                                            cart</button>
                                     </form>
                                 </li>
                             </ul>
@@ -117,7 +141,8 @@
                                     ullamco laboris
                                     nisi ut aliquip ex ea com modo consequat. Duis aute irure dolor in reprehenderit in
                                     voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                    non
                                     proident.
                                 </p>
                                 <ul>
@@ -176,7 +201,8 @@
                                                     <div class="comment-author">
                                                         <img src="assets/img/testimonial-sm3.jpg" alt="comment1"
                                                             class="avatar">
-                                                        <span class="nm"><a href="#">Hannibal Lecter</a></span>
+                                                        <span class="nm"><a href="#">Hannibal
+                                                                Lecter</a></span>
                                                     </div><!-- .comment-author -->
                                                     <div class="st-star" data-star="4">
                                                         <div class="st-star-in"></div>
@@ -230,7 +256,8 @@
                                                 <li><a href="{{ route('shop.detail', $same->id) }}" tabindex="0"><i
                                                             class="fas fa-eye"></i></a></li>
                                                 <li><a href="#" tabindex="0"><i
-                                                            class="fas fa-shopping-cart"></i></a></li>
+                                                            class="fas fa-shopping-cart"></i></a>
+                                                </li>
                                                 <li><a href="#" tabindex="0"><i class="fas fa-heart"></i></a>
                                                 </li>
                                             </ul>
@@ -239,7 +266,8 @@
                                     <!-- Product Name and Price -->
                                     <div class="st-product-details">
                                         <h4 class="st-product-title"><a
-                                                href='{{ route('shop.detail', $same->id) }}'>{{ $same->title }}</a></h4>
+                                                href='{{ route('shop.detail', $same->id) }}'>{{ $same->title }}</a>
+                                        </h4>
                                         <div class="st-product-label">
                                             <p class="st-product-price">$235</p>
                                             <div class="st-star" data-star="5">

@@ -157,7 +157,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><span class="table-dscr">{{ $cate->description }}</span></td>
+                                        <td><span class="table-dscr" style="width: 120px">{{ $cate->description }}</span></td>
                                         <td>fashion</td>
                                         <td><a href="all-product.html">{{ $cate->count }}</a></td>
                                         <td>

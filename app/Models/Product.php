@@ -15,7 +15,10 @@ class Product extends Model
         'galery',
         'productCode',
         'inventory',
-        'price',
+        'regularPrice',
+        'SKU',
+        'discount',
+        
         'video',
         'categories',
     ];

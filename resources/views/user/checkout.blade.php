@@ -59,7 +59,7 @@
                                     <tbody>
                                         @php
                                             $total = 0;
-                                            $total_product = 0;
+                                          $toal_product = 0;
                                         @endphp
                                         @foreach ((array) session('cart') as $id => $details)
                                             @php
@@ -121,11 +121,12 @@
                                 @php
                                     $cart_name = '';
                                     date_default_timezone_set('Asia/Ho_Chi_Minh');
-                                    $date = date('d/m/y-H:i:s');
+                                    $date = date('y/m/d-H:i:s');
+                                    // dd($date)
                                 @endphp
                                 @foreach ((array) session('cart') as $id => $details)
                                     @php
-                                        $cart_name .= $details['product_name'] .= ' x'. $details['quantity']. ','  ;
+                                        $cart_name .= $details['product_name'] .= ' x ' . $details['total']  .= ' x ' . $details['quantity'] . ',';
                                         $total_product += $details['quantity'];
                                     @endphp
                                 @endforeach

@@ -19,8 +19,9 @@ class CartController extends Controller
             $cart[$id] = [
                 "product_name" => $product->title,
                 "photo" => $product->thunm,
-                "price" => $product->price,
-                "quantity" => 1
+                "price" => $product->discount,
+                "quantity" => 1,
+                "total"=> $product->discount * 1,
             ];
         }
         session()->put('cart', $cart);
@@ -38,8 +39,9 @@ class CartController extends Controller
             $cart[$id] = [
                 "product_name" => $product->title,
                 "photo" => $product->thunm,
-                "price" => $product->price,
-                "quantity" => $quantity
+                "price" => $product->discount,
+                "quantity" => $quantity,
+                "total"=> $product->discount * $quantity
             ];
         }
         session()->put('cart', $cart);

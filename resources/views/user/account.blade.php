@@ -69,38 +69,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($order as $order)
                                             <tr>
-                                                <td>#12345</td>
-                                                <td>25 Jan 2020</td>
-                                                <td>On Hold</td>
-                                                <td>$132.00 for 1 items</td>
-                                                <td><a href="#" class="btn st-btn-custom st-accent btn-sm">View</a>
+                                                <td>#{{$order->billcode}}</td>
+                                                <td>{{$order->date}}</td>
+                                                <td>{{$order->paymain}}</td>
+                                                <td>${{$order->total}} for {{$order->product}} items</td>
+                                                <td><a href="{{route('account.detailBill',$order->id)}}" class="btn st-btn-custom st-accent btn-sm">View</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>#25635</td>
-                                                <td>25 Jan 2020</td>
-                                                <td>Cancel</td>
-                                                <td>$500.00 for 5 items</td>
-                                                <td><a href="#" class="btn st-btn-custom st-accent btn-sm">View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#21235</td>
-                                                <td>25 Jan 2020</td>
-                                                <td>Complete</td>
-                                                <td>$89.00 for 1 items</td>
-                                                <td><a href="#" class="btn st-btn-custom st-accent btn-sm">View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#25678</td>
-                                                <td>28 Jan 2020</td>
-                                                <td>Complete</td>
-                                                <td>$1058.00 for 5 items</td>
-                                                <td><a href="#" class="btn st-btn-custom st-accent btn-sm">View</a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -32,9 +32,9 @@ Route::get('/', function () {
 
 
 
-    Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
-    Route::get('/shop/{id}', [ShopController::class, 'shopsame'])->name('shop.shopsame');
-    Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
+Route::get('/shop/{id}', [ShopController::class, 'shopsame'])->name('shop.shopsame');
+Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
 
 
 Route::group(['middleware' => 'guest'], function () {
@@ -51,19 +51,37 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
     Route::patch('update-cart', [CartController::class, 'update'])->name('shop_cart.update_cart');
-    Route::get('/shop_cart', [CartController::class,'shopCart'])->name('shop_cart.shop_cart');
-    Route::get('/check-out', [CartController::class,'checkOut'])->name('shop_cart.check-out');
-    Route::post('/bill_done', [CartController::class,'doneBill'])->name('shop_cart.donebill');
-    Route::get('/add_to_cart/{id}', [CartController::class,'addToCard'])->name('shop_cart.add_to_cart') ;
-    Route::post('/add_cart/{id}', [CartController::class,'addCart'])->name('shop_cart.add_cart') ;
+    Route::get('/shop_cart', [CartController::class, 'shopCart'])->name('shop_cart.shop_cart');
+    Route::get('/check-out', [CartController::class, 'checkOut'])->name('shop_cart.check-out');
+    Route::post('/bill_done', [CartController::class, 'doneBill'])->name('shop_cart.donebill');
+    Route::get('/add_to_cart/{id}', [CartController::class, 'addToCard'])->name('shop_cart.add_to_cart');
+    Route::post('/add_cart/{id}', [CartController::class, 'addCart'])->name('shop_cart.add_cart');
+
+
     route::resource('account', AccountController::class);
-    route::get('/order',[ OrderController::class ,'index'])->name('order.index');
-    route::delete('/order/{id}',[ OrderController::class ,'destroy'])->name('order.destroy');
+    route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+
+
     Route::resource('/admin', AdmimController::class);
+    Route::get('/filemaneger', [AdmimController::class, 'filemaneger'])->name('admin.filemaneger');
     Route::resource('/categories', CategoriesController::class);
+
     Route::resource('/contact', ContactController::class);
+
     Route::resource('/products', ProductController::class);
+    Route::post('/deleteImage', [ProductController::class, 'deleteImage'])->name('products.deleteImage');
+    Route::get('/changeImage/{id}', [ProductController::class, 'changeImage'])->name('products.changeImage');
+
+    Route::get('/invoices/{id}', [AdmimController::class, 'invoices'])->name('admin.invoices');
+
     Route::resource('/sendmail', SendEmail::class);
     Route::resource('/customer', CustomerController::class);
+
+    Route::get('/detailBill/{id}', [AccountController::class, 'detailBill'])->name('account.detailBill');
+
+    Route::get('/fix/{id}', [CustomerController::class, 'fix'])->name('customer.fix');
+    Route::get('/updateUser/{id}', [CustomerController::class, 'updateUser'])->name('customer.updateUser');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -673,23 +673,13 @@
                                 <li class="sidebar-dropdown-item"><a href="{{route('order.index')}}" class="sidebar-link">Order</a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-dropdown-item">
-                            <a href="calendar.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-calendar"></i></span> <span class="sidebar-txt">Calendar</span></a>
-                        </li>
-                        <li class="sidebar-dropdown-item">
-                            <a href="chat.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-messages"></i></span> <span class="sidebar-txt">Chat</span></a>
-                        </li>
-                        <li class="sidebar-dropdown-item">
-                            <a href="email.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-envelope"></i></span> <span class="sidebar-txt">Email</span></a>
-                        </li>
-                        <li class="sidebar-dropdown-item">
-                            <a href="" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-file-invoice"></i></span> <span class="sidebar-txt">Invoices</span></a>
-                        </li>
+                      
                         <li class="sidebar-dropdown-item">
                             <a href="{{route('contact.index')}}" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-user-plus"></i></span> <span class="sidebar-txt">Contacts</span></a>
                         </li>
                     </ul>
                 </li>
+                @if (Auth::user()->role == 3)
                 <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Pages</a>
                     <ul class="sidebar-link-group">
@@ -768,7 +758,7 @@
                             <a href="map.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-location-dot"></i></span> <span class="sidebar-txt">Maps</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="file-manager.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-folder-open"></i></span> <span class="sidebar-txt">File Manager</span></a>
+                            <a href="{{route('admin.filemaneger')}}" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-folder-open"></i></span> <span class="sidebar-txt">File Manager</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
                             <a role="button" class="sidebar-link has-sub" data-dropdown="levelDropdown"><span class="nav-icon"><i class="fa-light fa-layer-group"></i></span> <span class="sidebar-txt">Multiple Level</span></a>
@@ -802,6 +792,8 @@
                     <p>We're an award-winning, forward thinking</p>
                     <a href="#" class="btn btn-sm btn-light">Go to Help Center</a>
                 </li>
+                @endif
+
             </ul>
         </div>
     </div>

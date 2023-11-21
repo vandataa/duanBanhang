@@ -22,8 +22,11 @@ class ProductFactory extends Factory
             'thunm'=> $this->faker->image,
             'galery'=>$this->faker->image,
             'productCode'=> $this->faker->countryCode,
+            'SKU'=>$this->faker->postcode,
+           
             'inventory'=>100,
-            'price'=>random_int(1,1000),
+            'regularPrice'=>random_int(1,1000),
+            'discount'=>random_int(1,1000),
             'video'=>$this->faker->url,
             'categories'=> random_int(1,10),
         ];
