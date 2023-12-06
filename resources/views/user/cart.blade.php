@@ -37,7 +37,7 @@
                             @endforeach
                             @if (session('cart'))
                                 @foreach (session('cart') as $details)
-                                    <tr data-id="{{ $id }}">
+                                    <tr data-id="{{ $details['idPro']}}">
                                         <td>
 
                                             <div class="st-table-img"><img
@@ -48,7 +48,7 @@
                                         <td data-th="Price">{{ $details['price'] }}</td>
                                         <td data-th="Quantity">
                                             <div class="st-quantity">
-                                                <input type="text" class="quantity cart_update"
+                                                <input type="text" max="" class="quantity cart_update"
                                                     value="{{ $details['quantity'] }}">
 
                                             </div>

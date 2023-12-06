@@ -58,9 +58,9 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $total = 0;
-                                          $toal_product = 0;
-                                        @endphp
+                                        $total = 0;
+
+                                    @endphp
                                         @foreach ((array) session('cart') as $id => $details)
                                             @php
                                                 $total += $details['price'] * $details['quantity'];
@@ -119,6 +119,7 @@
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="">
                                 @php
+                                    $totalProduct = 0;
                                     $cart_name = '';
                                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                                     $date = date('y/m/d-H:i:s');
@@ -127,13 +128,15 @@
                                 @foreach ((array) session('cart') as $id => $details)
                                     @php
                                         $cart_name .= $details['product_name'] .= ' x ' . $details['total']  .= ' x ' . $details['quantity'] . ',';
-                                        $total_product += $details['quantity'];
+                                        $totalProduct+=$details['quantity'];
                                     @endphp
+
                                 @endforeach
+
                                 <input type="hidden" name="date" value="{{ $date }}" id="">
                                 <input type="hidden" name="cart_bill" value="{{ $cart_name }}" id="">
                                 <input type="hidden" name="total" value="{{ $total }}" id="">
-                                <input type="hidden" name="product" value="{{ $total_product }}" id="">
+                                <input type="hidden" name="product" value="{{$totalProduct}}" id="">
                                 <div class="st-height-b20 st-height-lg-b20"></div>
                                 <button type="submit" class="btn st-btn-custom st-accent btn-md">Place Order</button>
                             </div>

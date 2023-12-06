@@ -21,5 +21,8 @@ class StatuSeeder extends Seeder
         \App\Models\Statu::factory()->create([
             'nameStatus' => 'Delivered',
         ]);
+        \App\Models\Statu::factory()->create([
+            'nameStatus' => 'Successful delivery',
+        ]);
     }
 }

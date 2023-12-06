@@ -74,6 +74,38 @@
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="st-tab-address">
+                                            <h3>Status Bill</h3>
+                                            @php
+                                                $starus = '';
+                                                if ($bill->status == 1) {
+                                                    $starus = 'Canceled';
+                                                }
+                                                if ($bill->status == 2) {
+                                                    $starus = 'Waited';
+                                                }
+                                                if ($bill->status == 3) {
+                                                    $starus = 'Delivery';
+                                                }
+                                                if ($bill->status == 4) {
+                                                    $starus = 'Successful delivery';
+                                                }
+
+                                            @endphp
+                                            <p>{{ $starus }}</p>
+                                            @if ($bill->status == 2)
+                                                <form action="{{ route('order.update', $bill->id) }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" value="1" name="status">
+                                                    <button class="btn st-btn-custom st-accent btn-md">Cancel order</button>
+                                                </form>
+                                            @else
+
+                                            @endif
+                                        </div>
+                                        <div class="st-height-b0 st-height-lg-b30"></div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">

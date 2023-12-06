@@ -160,7 +160,7 @@
                                         <div class="st-product-thumb">
                                             <a href='{{ route('shop.detail', $pro->id) }}'><img
                                                     src="{{ asset('storage/images/' . $pro->thunm) }}"
-                                                    style="object-fit: cover ;width:253px; height:253px"
+                                                    style="width: 465px ; height: 300px; object-fit: cover" 
                                                     alt="Product"></a>
                                             <div class="st-product-tools">
                                                 <ul>

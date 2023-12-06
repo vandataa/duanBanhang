@@ -189,18 +189,25 @@
                                         <td><a href="#">{{ $cus->email }}</a></td>
                                         <td>2</td>
                                         <td>
-                                            <form action="{{ route('customer.update', $cus->id) }}" method="post">
+                                            <form class="row" action="{{ route('customer.update', $cus->id) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('PUT')
-                                                <select name="role" id="">
-                                                    <option>change role</option>
-                                                    <option value="1">user</option>
-                                                    <option value="2">Quản trị</option>
-                                                    <option value="3">Admin</option>
-                                                </select>
-                                                <input type="hidden" name="id" value="{{ $cus->id }}"
-                                                    id="">
-                                                <button type="submit">change</button>
+                                                <div class="col">
+                                                    <select class="form-control form-control-sm select2-hidden-accessible"
+                                                        name="role" id="">
+                                                        <option>change role</option>
+                                                        <option value="1">User</option>
+                                                        <option value="2">Quản trị</option>
+                                                        <option value="3">Admin</option>
+                                                    </select>
+                                                    <input type="hidden" name="id" value="{{ $cus->id }}"
+                                                        id="">
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-sm btn-primary w-100"
+                                                        type="submit">change</button>
+                                                </div>
                                             </form>
                                         </td>
                                         <td>Dhaka</td>

@@ -6,12 +6,12 @@
             <div class="col-xxl-6 col-xl-5 col-4 d-flex align-items-center gap-20">
                 <div class="main-logo d-lg-block d-none">
                     <div class="logo-big">
-                        <a href="{{route('admin.index')}}">
+                        <a href="/admin">
                             <img src="{{asset('assets/img/logoz.png')}}" alt="Logo">
                         </a>
                     </div>
                     <div class="logo-small">
-                        <a href="{{route('admin.index')}}">
+                        <a href="/admin">
                             <img src="{{asset('assets/img/logoz.png')}}" alt="Logo">
                         </a>
                     </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="col-4 d-lg-none">
                 <div class="mobile-logo">
-                    <a href="{{route('admin.index')}}">
+                    <a href="/admin">
                         <img src="{{asset('assets/images/logo-big.png')}}" alt="Logo">
                     </a>
                 </div>
@@ -628,11 +628,12 @@
     <div class="main-sidebar">
         <div class="main-menu">
             <ul class="sidebar-menu scrollable">
+                @if (Auth::user()->role == 3 || Auth::user()->role == 2)
                 <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Dashboard</a>
                     <ul class="sidebar-link-group">
                         <li class="sidebar-dropdown-item">
-                            <a href="{{route('admin.index')}}" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-cart-shopping-fast"></i></span> <span class="sidebar-txt">eCommerce</span></a>
+                            <a href="/admin" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-cart-shopping-fast"></i></span> <span class="sidebar-txt">eCommerce</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
                             <a href="crm-dashboard.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-user-headset"></i></span> <span class="sidebar-txt">CRM</span></a>
@@ -666,19 +667,22 @@
                         <li class="sidebar-dropdown-item">
                             <a role="button" class="sidebar-link has-sub" data-dropdown="ecommerceDropdown"><span class="nav-icon"><i class="fa-light fa-cart-shopping-fast"></i></span> <span class="sidebar-txt">eCommerce</span></a>
                             <ul class="sidebar-dropdown-menu" id="ecommerceDropdown">
+                                @if (Auth::user()->role == 3)
                                 <li class="sidebar-dropdown-item"><a href="{{route('customer.index')}}" class="sidebar-link">All Customer</a></li>
+                                @endif
                                 <li class="sidebar-dropdown-item"><a href="{{route('products.create')}}" class="sidebar-link">Add Product</a></li>
                                 <li class="sidebar-dropdown-item"><a href="{{route('products.index')}}" class="sidebar-link">All Product</a></li>
                                 <li class="sidebar-dropdown-item"><a href="{{route('categories.index')}}" class="sidebar-link">Category</a></li>
                                 <li class="sidebar-dropdown-item"><a href="{{route('order.index')}}" class="sidebar-link">Order</a></li>
                             </ul>
                         </li>
-                      
+
                         <li class="sidebar-dropdown-item">
                             <a href="{{route('contact.index')}}" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-user-plus"></i></span> <span class="sidebar-txt">Contacts</span></a>
                         </li>
                     </ul>
                 </li>
+                @endif
                 @if (Auth::user()->role == 3)
                 <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Pages</a>

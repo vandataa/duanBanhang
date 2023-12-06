@@ -17,47 +17,12 @@ class AccountController extends Controller
     public function index()
     {
 
-        $order = DB::table("bills")->where('id_user', Auth::user()->id)->get();
+        $order = DB::table("bills")->where('id_user', Auth::user()->id)->orderBy('id','DESC')->get();
 
         return view("user.account", compact("order"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
         $id = $request->input('id');

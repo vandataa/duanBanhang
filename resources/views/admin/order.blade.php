@@ -199,12 +199,12 @@
                                     </th>
                                     <th>Order ID</th>
                                     <th>Customer</th>
-
                                     <th>Product</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
                                     <th>Delivery Status</th>
                                     <th>Order Date</th>
+                                    <th>Change Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -223,12 +223,31 @@
                                         <td>{{ $order->product }}</td>
                                         <td>${{ $order->total }}</td>
                                         <td>{{ $order->paymain }}</td>
-                                        <td><span>{{ $order->nameStatus }}</span></td>
+                                        <td>{{ $order->nameStatus }}</td>
                                         <td>{{ $order->date }}</td>
                                         <td>
+                                            <form class="row g-2" action="{{ route('order.update', $order->idbill) }}"
+                                                method="post">
+                                                @csrf
+                                                <div class="col">
+                                                    <select class="form-control form-control-sm select2-hidden-accessible"
+                                                        name="status">
+                                                        <option selected>Status</option>
+                                                        <option value="1">Canceled</option>
+                                                        <option value="2">Waited</option>
+                                                        <option value="3">Delivered</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-sm btn-primary w-100"
+                                                        type="submit">Change</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
                                             <div class="btn-box" style="margin-right: 40px">
-                                                <form action="{{ route('order.destroy', $order->idbill) }}"
-                                                    method="post">
+
+                                                <form action="{{ route('order.destroy', $order->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"><i class="fa-light fa-trash"></i></button>
@@ -237,6 +256,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
                             </tbody>
                         </table>
                         <div class="table-bottom-control"></div>

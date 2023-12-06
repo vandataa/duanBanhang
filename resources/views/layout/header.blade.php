@@ -22,7 +22,7 @@
                     <nav class="st-nav">
                         <ul class="st-nav-list">
                             <li><a href='/'>Home</a></li>
-                            <li><a href='about.html'>About</a></li>
+                            <li><a href='{{ route('about') }}'>About</a></li>
                             <li class="menu-item-has-children"><a href="#">Pages</a>
                                 <ul>
                                     <li class="menu-item-has-children"><a href="#">Service</a>
@@ -41,28 +41,20 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href='{{ route('shop.shop') }}'>Shop</a>
+                            <li><a href='{{ route('shop.shop') }}'>Shop</a>
                             </li>
-                            <li class="menu-item-has-children"><a href="blog-page.html">Blog</a>
-                                <ul>
-                                    <li><a href='blog-page-right-sidebar.html'>Blog page with right sidebar</a></li>
-                                    <li><a href='blog-page-left-sidebar.html'>Blog page with left sidebar</a></li>
-                                    <li><a href='blog-page-grid-view.html'>Grid view blog page</a></li>
-                                    <li><a href='blog-details-left-sidebar.html'>Blog details with left sidebar</a>
-                                    </li>
-                                    <li><a href='blog-details-right-sidebar.html'>Blog details with right
-                                            sidebar</a></li>
-                                    <li><a href='blog-details-no-sidebar.html'>Blog details no sidebar</a></li>
-                                </ul>
+                            <li><a href="{{ route('blog') }}">Blog</a>
                             </li>
-                            <li><a href='contact-us.html'>Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a>
+                            </li>
                         </ul>
                     </nav>
                     <!-- Menu Tool Box -->
                     <ul class="st-toolbox">
                         <li><span class="st-toolbox-btn st-search-open"><i class="fas fa-search"></i></span></li>
-                        <li><a class='st-toolbox-btn' href='{{route('shop_cart.shop_cart')}}'><i
-                                    class="fas fa-shopping-cart"></i><span class="badge badge-primary">{{count((array) session('cart'))}}</span></a>
+                        <li><a class='st-toolbox-btn' href='{{ route('shop_cart.shop_cart') }}'><i
+                                    class="fas fa-shopping-cart"></i><span
+                                    class="badge badge-primary">{{ count((array) session('cart')) }}</span></a>
                         </li>
                         <li>
                             @if (isset(Auth::user()->id))
@@ -70,15 +62,12 @@
 
                                     @if (Auth::user()->image != null)
                                         <img src="{{ asset('storage/images/' . Auth::user()->image) }}"
-                                            style="width=10px; height=10px;border-radius:50% ; object-fit:contain"  alt="">
+                                            style="width=10px; height=10px;border-radius:50% ; object-fit:contain"
+                                            alt="">
                                     @else
                                         <i class="fas fa-user"></i>
                                     @endif
-
                                 </a>
-
-
-
                         <li><a class='st-toolbox-btn' href='{{ route('logout') }}'><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">

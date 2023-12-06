@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
+use App\Models\Statu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,55 +18,22 @@ class OrderController extends Controller
             ->select('*', 'bills.id as idbill')
             ->join('status', 'status.id', '=', 'bills.status')
             ->get();
+
         return view('admin.order', ['order' => $order]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
         Bill::destroy($id);
+        return redirect()->back();
+    }
+    public function updateStatus(Request $request){
+        $status = $request->input('status');
+        $id = $request->id;
+
+        $order = DB::table('bills')->where('id', $id)->update(['status'=> $status]);
         return redirect()->back();
     }
 }

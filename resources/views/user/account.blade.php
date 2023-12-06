@@ -40,11 +40,14 @@
                             <div id="Dashboard" class="st-tab active">
                                 <div class="st-MyAccount-content">
                                     <p>
-                                        Hello <strong>{{Auth::user()->name}}</strong>
-                                        @if ( Auth::user()->role == 2  || Auth::user()->role==3)
-                                        (<strong></strong><a
-                                        href="/admin">Admin</a>)</p>
-                                        @endif
+                                        Hello <strong>{{ Auth::user()->name }}</strong>
+                                        @if (Auth::user()->role == 2)
+                                            (<strong></strong><a href="/admin">Admin</a>)
+                                            @elseif (Auth::user()->role == 3)
+                                            (<strong></strong><a href="/admin">Admin</a>)</p>
+                                            @endif
+                                    </p>
+
 
                                     <p>
                                         From your account dashboard you can view your <a
@@ -70,14 +73,15 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($order as $order)
-                                            <tr>
-                                                <td>#{{$order->billcode}}</td>
-                                                <td>{{$order->date}}</td>
-                                                <td>{{$order->paymain}}</td>
-                                                <td>${{$order->total}} for {{$order->product}} items</td>
-                                                <td><a href="{{route('account.detailBill',$order->id)}}" class="btn st-btn-custom st-accent btn-sm">View</a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>#{{ $order->billcode }}</td>
+                                                    <td>{{ $order->date }}</td>
+                                                    <td>{{ $order->paymain }}</td>
+                                                    <td>${{ $order->total }} for {{ $order->product }} items</td>
+                                                    <td><a href="{{ route('account.detailBill', $order->id) }}"
+                                                            class="btn st-btn-custom st-accent btn-sm">View</a>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -115,7 +119,7 @@
                                     method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="id" value="{{Auth::user()->id}}" id="">
+                                    <input type="hidden" name="id" value="{{ Auth::user()->id }}" id="">
                                     <div class="st-othentication-card">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -134,12 +138,12 @@
                                                 value="{{ Auth::user()->password }}" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="address" value="{{ Auth::user()->address }}" placeholder=" Address "
-                                                class="form-control">
+                                            <input type="text" name="address" value="{{ Auth::user()->address }}"
+                                                placeholder=" Address " class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="phone" value="{{ Auth::user()->phone }}" placeholder=" Phone "
-                                                class="form-control">
+                                            <input type="text" name="phone" value="{{ Auth::user()->phone }}"
+                                                placeholder=" Phone " class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <input type="file" name="image" placeholder=" image "

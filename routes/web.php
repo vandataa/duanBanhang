@@ -12,6 +12,8 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SendEmail;
 use App\Http\Controllers\ShopController;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +28,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $pro = Product::all();
+    return view('index', ['product' => $pro]);
 });
 
+route::get('/about', function () {
+    return view('user.about');
+})->name('about');
 
-
+route::get('/blog', function () {
+    return view('user.blog');
+})->name('blog');
+Route::get('/contact_client', function () {
+    return view('user.contact');
+})->name('contact');
 
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop.shop');
 Route::get('/shop/{id}', [ShopController::class, 'shopsame'])->name('shop.shopsame');
@@ -61,9 +72,16 @@ Route::group(['middleware' => 'auth'], function () {
     route::resource('account', AccountController::class);
     route::get('/order', [OrderController::class, 'index'])->name('order.index');
     route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::post('/update-status/{id}', [OrderController::class, 'updateStatus'])->name('order.update');
 
+    Route::get('/admin', function () {
+        if (Auth::user()->role == 2 || Auth::user()->role == 3) {
+            return view('admin.admin');
+        }else{
+            return view('404.404');
+        }
+    });
 
-    Route::resource('/admin', AdmimController::class);
     Route::get('/filemaneger', [AdmimController::class, 'filemaneger'])->name('admin.filemaneger');
     Route::resource('/categories', CategoriesController::class);
 
