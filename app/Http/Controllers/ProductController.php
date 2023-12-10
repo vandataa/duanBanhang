@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,10 +18,17 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = DB::table('products')
+        if(Auth::user()->role == 3) {
+            $products = DB::table('products')
             ->join('categories', 'categories.id', '=', 'products.categories')
             ->select('products.*', 'categories.categoryName')->orderBy('id', 'desc')
             ->get();
+        }else{
+            $products = DB::table('products')
+            ->join('categories', 'categories.id', '=', 'products.categories')
+            ->select('products.*', 'categories.categoryName')->where('id_create',Auth::user()->id)->orderBy('id', 'desc')
+            ->get();
+        }
         return view('products.all', ['products' => $products]);
     }
 
@@ -52,6 +60,7 @@ class ProductController extends Controller
         $inventory = $request->input('inventory');
         $SKU = $request->input('SKU');
         $images = array();
+
         foreach ($request->image as $value) {
             $imageName = $value->getClientOriginalName();
             $path = $value->move('storage/images', $imageName);
@@ -71,18 +80,13 @@ class ProductController extends Controller
             'discount' => $discount,
             'SKU' => $SKU,
             'video' => $video,
-            'categories' => $category
+            'categories' => $category,
+            'id_create'=> Auth::user()->id,
+
         ];
         $product = Product::create($data);
-        Category::where('id', $category)->update(["count" => $count]);
+        Category::where('id', $category)->update(["count" => Category::where('id', $category)->count()]);
         return redirect()->route('products.index')->with('success', 'Thêm sản phẩm thành công');
-    }
-    /**
-     * Display the specified resource.
-     */
-    public function show()
-    {
-
     }
 
     /**

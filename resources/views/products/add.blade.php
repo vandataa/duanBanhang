@@ -232,9 +232,8 @@
                         </div>
                         <div class="panel-body">
                             <div class="row g-3">
-
                                 <div class="col-12">
-
+                                    <input type="hidden" name="id_create" value="{{Auth::user()->id}}" id="">
                                     <div class="btn-box d-flex justify-content-end gap-2">
                                         <button class="btn btn-sm btn-outline-primary">Save</button>
                                         <button class=" btn-sm btn-primary" type="submit">Publish</button>

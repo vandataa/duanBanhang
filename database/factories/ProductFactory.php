@@ -23,12 +23,12 @@ class ProductFactory extends Factory
             'galery'=>$this->faker->image,
             'productCode'=> $this->faker->countryCode,
             'SKU'=>$this->faker->postcode,
-           
             'inventory'=>100,
             'regularPrice'=>random_int(1,1000),
             'discount'=>random_int(1,1000),
             'video'=>$this->faker->url,
             'categories'=> random_int(1,10),
+            'id_create'=>random_int(2,3),
         ];
     }
 }

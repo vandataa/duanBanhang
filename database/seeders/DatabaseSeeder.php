@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Statu::factory()->create([
             'nameStatus' => 'Delivered',
         ]);
+        \App\Models\Statu::factory()->create([
+            'nameStatus' => 'Success delivered',
+        ]);
         \App\Models\Role::factory()->create([
             'nameRole' => 'user',
         ]);
